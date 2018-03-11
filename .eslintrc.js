@@ -7,8 +7,12 @@ module.exports = {
       "node": true,
     },
     "plugins": [
-      "import"
+      "import",
+      "async-await"
     ],
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
 
     // custom rules
     "rules": {

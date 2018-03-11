@@ -34,7 +34,7 @@ export default {
         method: 'GET',
       })
         .then((res) => {
-          this.users = res.data.data.items;
+          this.users = res.data.values.items;
 
           console.log(`success ${this.context}`, res);
         }, (res) => {

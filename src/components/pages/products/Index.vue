@@ -10,3 +10,10 @@
     </ul>
   </page-tile>
 </template>
+<script>
+export default {
+  created() {
+    this.$store.dispatch('testAction');
+  }
+}
+</script>

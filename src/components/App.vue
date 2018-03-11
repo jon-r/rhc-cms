@@ -64,7 +64,7 @@
 
 <script>
 import NavBar from './NavBar.vue';
-import Breadcrumbs from './Breadcrumbs.vue';
+import BreadCrumbs from './BreadCrumbs.vue';
 import SideBar from './SideBar.vue';
 
 export default {
@@ -75,9 +75,9 @@ export default {
     };
   },
   components: {
-    'nav-bar': NavBar,
-    'side-bar': SideBar,
-    'bread-crumbs': Breadcrumbs,
+    NavBar,
+    SideBar,
+    BreadCrumbs,
   },
 
   mounted() {
