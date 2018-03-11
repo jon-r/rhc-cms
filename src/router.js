@@ -75,7 +75,7 @@ const router = new VueRouter({
           children: [
             { path: '', name: 'products-index', component: ProductIndex },
             { path: 'new', name: 'new-product', component: ProductNew, meta: { title: 'New' } },
-            { path: 'edit/:id', name: 'edit-product', component: ProductEdit, meta: { title: 'Edit' } },
+            { path: 'edit/:id?', name: 'edit-product', component: ProductEdit, meta: { title: 'Edit' } },
             { path: 'list', name: 'list-products', component: ProductList, meta: { title: 'List' } },
             { path: 'categories', name: 'edit-categories', component: ProductCategories, meta: { title: 'Categories' } },
           ],

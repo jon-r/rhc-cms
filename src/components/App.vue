@@ -2,13 +2,27 @@
 <div class="site-background">
   <div v-if="loaded">
     <nav-bar></nav-bar>
-    <bread-crumbs></bread-crumbs>
 
     <section class="section">
       <div class="container">
-        <router-view></router-view>
+        <div class="columns is-desktop">
+          <div class="column is-9 is-offset-3-desktop">
+            <bread-crumbs></bread-crumbs>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-3 is-hidden-touch">
+            <side-bar></side-bar>
+          </div>
+          <div class="column">
+            <main>
+              <router-view></router-view>
+            </main>
+          </div>
+        </div>
       </div>
     </section>
+
 
     <hr/>
     <div style="text-align:center;">
@@ -49,8 +63,9 @@
 </template>
 
 <script>
-import NavBar from './common/NavBar.vue';
-import Breadcrumbs from './common/Breadcrumbs.vue';
+import NavBar from './NavBar.vue';
+import Breadcrumbs from './Breadcrumbs.vue';
+import SideBar from './SideBar.vue';
 
 export default {
   data() {
@@ -61,6 +76,7 @@ export default {
   },
   components: {
     'nav-bar': NavBar,
+    'side-bar': SideBar,
     'bread-crumbs': Breadcrumbs,
   },
 
@@ -141,5 +157,9 @@ $link-focus-border: $primary;
     background-color: $base-color;
     padding-top: $navbar-height;
     min-height: 100vh;
+}
+
+.margin-bottom {
+  margin-bottom: 0.75rem;
 }
 </style>

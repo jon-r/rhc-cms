@@ -1,5 +1,5 @@
 <template>
-<nav class="breadcrumb container">
+<nav class="breadcrumb">
   <ul>
     <li v-for="(crumb, i) in data.crumbs" v-if="crumb.title" :key="i">
       <router-link :to="crumb.path" active-class="is-active" exact>{{crumb.title}}</router-link>
