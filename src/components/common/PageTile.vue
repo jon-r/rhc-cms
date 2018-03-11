@@ -1,13 +1,14 @@
 <template>
-  <div class="box" :class="styles">
-    <h1 v-if="title" class="title">{{title}}</h1>
-    <hr />
+<article class="tile is-parent">
+  <div class="tile is-child box">
+    <h2 v-if="title" class="title is-4">{{title}}</h2>
     <slot></slot>
   </div>
+</article>
 </template>
 
 <script>
 export default {
-  props: ['title', 'styles'],
+  props: ['title'],
 };
 </script>

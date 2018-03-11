@@ -7,7 +7,10 @@ import Buefy from 'buefy';
 
 import App from './components/App.vue';
 import router from './router';
+import TileContainer from './components/common/TileContainer.vue';
 import PageTile from './components/common/PageTile.vue';
+import Link from './components/common/Link.vue';
+
 
 // Vue.config.productionTip = false;
 
@@ -26,9 +29,10 @@ Vue.use(VueAuth, {
   rolesVar: 'role',
 });
 
-// global components;
+// global components; saves importing each time
+Vue.component('tile-container', TileContainer);
 Vue.component('page-tile', PageTile);
-
+Vue.component('r-link', Link);
 
 new Vue({
   router,
