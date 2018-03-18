@@ -1,25 +1,12 @@
 import Vuex from 'vuex';
 
-import actions from './actions';
-import mutations from './mutations';
+import products from './products';
 
 export default () => new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
+  // TODO: add loading, error, other global states
 
-  state: {
-    layout: {
-      navigation: [],
-      content: [],
-    },
-    data: {
-      users: [],
-    },
+  modules: {
+    products,
   },
-
-  getters: {
-    getLayoutNavigation: state => state.layout.navigation,
-  },
-
-  actions,
-  mutations,
 });
