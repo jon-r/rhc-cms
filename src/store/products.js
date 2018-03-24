@@ -1,31 +1,33 @@
 import { fetchFromAPI } from './helpers';
+import { TOGGLE_LOADING } from '.';
 
-const PRODUCTS_TO_GO_ONLINE = 'PRODUCTS/TO_GO_ONLINE';
-const PRODUCT_GET = 'PRODUCT/GET';
+const GET_LIST = 'PRODUCTS/GET_LIST';
+const GET_ITEM = 'PRODUCTS/GET_ITEM';
 
 export default {
   state: {
     products: {},
-    currentList: {
-      total: 0,
-      ids: [],
-    },
+    currentList: [],
   },
   actions: {
-    async getToGoOnline({ commit }, page) {
-      let { data } = await fetchFromAPI('/cms/products/list/toGoOnline', {
-        query: { page },
-      });
-      commit(PRODUCTS_TO_GO_ONLINE, data);
+    getList({ commit }, listQuery) {
+      commit(TOGGLE_LOADING, true);
+      fetchFromAPI(`/cms/products/list/${listQuery}`)
+        .then(({ data }) => {
+          commit(GET_LIST, data);
+          commit(TOGGLE_LOADING, false);
+        });
     },
 
     async getProduct({ commit }, id) {
+      commit(TOGGLE_LOADING, true);
       let { data } = await fetchFromAPI(`/cms/product/show/${id}`);
-      commit(PRODUCT_GET, data);
+      commit(GET_ITEM, data);
+      commit(TOGGLE_LOADING, false);
     },
   },
   mutations: {
-    [PRODUCTS_TO_GO_ONLINE](state, { values }) {
+    [GET_LIST](state, { values }) {
       const newProducts = {};
       const ids = [];
 
@@ -33,17 +35,13 @@ export default {
         newProducts[item.id] = item;
         ids.push(item.id);
       });
-
       state.products = {
         ...state.products,
         ...newProducts,
       };
-      state.currentList = {
-        total: values.count,
-        ids,
-      };
+      state.currentList = ids;
     },
-    [PRODUCT_GET](state, { values }) {
+    [GET_ITEM](state, { values }) {
       state.products = {
         ...state.products,
         [values.product.id]: values.product,
@@ -51,8 +49,8 @@ export default {
     },
   },
   getters: {
-    list: state => state.currentList.ids.map(id => state.products[id]),
-    listCount: state => state.currentList.total,
+    productList: state => state.currentList.map(id => state.products[id]),
+    productListCount: state => state.currentList.length,
     product: state => id => state.products[id],
   },
 };

@@ -26,7 +26,7 @@ $md-amber: #FFE082; // contacts
 $md-amber-light: #FFC107;
 $md-amber-dark: #FF6F00;
 
-$base-color-bg: #f2f2f2;
+$base-color-bg: #ECEFF1;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -49,9 +49,9 @@ $colors: (
 );
 
 // Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
+// $link: $primary;
+// $link-invert: $primary-invert;
+// $link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
 @import "~bulma";

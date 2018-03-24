@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="columns is-desktop">
-    <div class="column is-9 is-offset-3-desktop">
+    <div class="column">
       <bread-crumbs></bread-crumbs>
     </div>
   </div>

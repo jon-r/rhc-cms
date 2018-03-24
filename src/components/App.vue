@@ -1,6 +1,6 @@
 <template>
 <div class="site-background">
-  <div v-if="loaded">
+  <div v-if="$auth.ready()">
     <nav-bar></nav-bar>
 
     <section class="section">
@@ -25,32 +25,34 @@
     <div style="text-align:center; font-size:12px;">
       Websanova <a href="https://github.com/websanova/laravel-api-demo">demo server</a> available on GitHub
     </div>
+    <b-loading :active="isLoading"></b-loading>
   </div>
-
-  <div v-if="!$auth.ready() || !loaded">
-    <div style="text-align:center; padding-top:50px;">
-      Loading site...
+  
+  <div v-else >
+    <div style="text-align:center; padding-top:50px">
+          loading site...
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import {
+  mapGetters
+} from 'vuex';
+
 import NavBar from './NavBar.vue';
 export default {
-  data() {
-    return {
-      loaded: false,
-    };
-  },
   components: {
     NavBar,
   },
-
+  computed: {
+    ...mapGetters(['isLoading'])
+  },
   mounted() {
     // Set up $auth.ready with other arbitrary loaders (ex: language file).
     setTimeout(() => {
-      this.loaded = true;
+      this.$store.dispatch('toggleLoading', false);
     }, 500);
   },
 };
@@ -61,12 +63,13 @@ export default {
 @import '../assets/app-styles';
 
 .site-background {
-    background-color: $base-color-bg;
-    padding-top: $navbar-height;
-    min-height: 100vh;
+  position: relative;
+  background-color: $base-color-bg;
+  padding-top: $navbar-height;
+  min-height: 100vh;
 }
 
 .margin-bottom {
-    margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 </style>
