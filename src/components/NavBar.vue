@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-primary is-fixed-top">
+  <nav class="navbar is-grey is-fixed-top">
     <div class="navbar-brand">
       <router-link :to="{name: 'admin'}" class="navbar-item">
         home

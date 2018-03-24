@@ -1,6 +1,7 @@
 <template>
+  <div class="container">
   <div class="columns is-centered">
-    <page-tile title="Login" styles="is-medium column is-half">
+    <page-tile title="Login" class="is-medium column is-half">
       <form v-on:submit.prevent="login()" >
         <h3 class="subtitle"><b>Test users:</b> (admin / secret)</h3>
 
@@ -21,6 +22,7 @@
         </b-message>
       </form>
     </page-tile>
+</div>
 </div>
 </template>
 

@@ -9,6 +9,7 @@ import Buefy from 'buefy';
 import App from './components/App.vue';
 import TileContainer from './components/common/TileContainer.vue';
 import PageTile from './components/common/PageTile.vue';
+import ColorTile from './components/common/ColorTile.vue';
 import Link from './components/common/Link.vue';
 
 import router from './router';
@@ -38,6 +39,7 @@ Vue.use(VueAuth, {
 // global components; saves importing each time
 Vue.component('tile-container', TileContainer);
 Vue.component('page-tile', PageTile);
+Vue.component('color-tile', ColorTile);
 Vue.component('r-link', Link);
 
 new Vue({

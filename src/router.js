@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 
 // dashboard
+import AdminApp from './components/pages/AdminApp.vue';
 import HomePage from './components/pages/Home.vue';
 import LoginPage from './components/pages/Login.vue';
 import RouteWrap from './components/common/RouteWrap.vue';
@@ -61,7 +62,7 @@ const router = new VueRouter({
     { path: '/login', name: 'login', component: LoginPage, meta: { auth: false } },
     {
       path: '/admin',
-      component: RouteWrap,
+      component: AdminApp,
       meta: {
         auth: { roles: 'admin', redirect: { name: 'login' }, forbiddenRedirect: '/403' },
         title: 'Home',
