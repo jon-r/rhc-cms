@@ -1,5 +1,5 @@
-import { fetchFromAPI } from './helpers';
-import { TOGGLE_LOADING } from '.';
+import {fetchFromAPI} from '../helpers/remoteData';
+import {TOGGLE_LOADING} from '.';
 
 const GET_LIST = 'PRODUCTS/GET_LIST';
 const GET_ITEM = 'PRODUCTS/GET_ITEM';
@@ -10,24 +10,24 @@ export default {
     currentList: [],
   },
   actions: {
-    getList({ commit }, listQuery) {
+    getList({commit}, listQuery) {
       commit(TOGGLE_LOADING, true);
       fetchFromAPI(`/cms/products/list/${listQuery}`)
-        .then(({ data }) => {
+        .then(({data}) => {
           commit(GET_LIST, data);
           commit(TOGGLE_LOADING, false);
         });
     },
 
-    async getProduct({ commit }, id) {
+    async getProduct({commit}, id) {
       commit(TOGGLE_LOADING, true);
-      let { data } = await fetchFromAPI(`/cms/product/show/${id}`);
+      let {data} = await fetchFromAPI(`/cms/product/show/${id}`);
       commit(GET_ITEM, data);
       commit(TOGGLE_LOADING, false);
     },
   },
   mutations: {
-    [GET_LIST](state, { values }) {
+    [GET_LIST](state, {values}) {
       const newProducts = {};
       const ids = [];
 
@@ -41,7 +41,7 @@ export default {
       };
       state.currentList = ids;
     },
-    [GET_ITEM](state, { values }) {
+    [GET_ITEM](state, {values}) {
       state.products = {
         ...state.products,
         [values.product.id]: values.product,

@@ -10,7 +10,7 @@ import RouteWrap from './components/common/RouteWrap.vue';
 import ProductIndex from './components/pages/products/Index.vue';
 import ProductNew from './components/pages/products/New.vue';
 import ProductEdit from './components/pages/products/Edit.vue';
-import ProductList from './components/pages/products/List.vue';
+import ProductListToGo from './components/pages/products/ListToGo.vue';
 import ProductCategories from './components/pages/products/Categories.vue';
 import WorkshopNew from './components/pages/workshop/New.vue';
 import WorkshopEdit from './components/pages/workshop/Edit.vue';
@@ -58,99 +58,120 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', redirect: { name: 'admin' } },
-    { path: '/login', name: 'login', component: LoginPage, meta: { auth: false } },
+    {path: '/', redirect: {name: 'admin'}},
+    {path: '/login', name: 'login', component: LoginPage, meta: {auth: false}},
     {
       path: '/admin',
       component: AdminApp,
       meta: {
-        auth: { roles: 'admin', redirect: { name: 'login' }, forbiddenRedirect: '/403' },
+        auth: {roles: 'admin', redirect: {name: 'login'}, forbiddenRedirect: '/403'},
         title: 'Home',
       },
       children: [
-        { path: '', name: 'admin', component: HomePage },
+        {path: '', name: 'admin', component: HomePage},
         {
           path: 'products',
           component: RouteWrap,
-          meta: { title: 'Products' },
+          meta: {title: 'Products'},
           children: [
-            { path: '', name: 'products-index', component: ProductIndex },
-            { path: 'new', name: 'new-product', component: ProductNew, meta: { title: 'New' } },
-            { path: 'edit/:id?', name: 'edit-product', component: ProductEdit, meta: { title: 'Edit' } },
-            { path: 'list', name: 'list-products', component: ProductList, meta: { title: 'List' } },
-            { path: 'categories', name: 'edit-categories', component: ProductCategories, meta: { title: 'Categories' } },
+            {path: '', name: 'products-index', component: ProductIndex},
+            {path: 'new', name: 'new-product', component: ProductNew, meta: {title: 'New'}},
+            {path: 'view/:id?', name: 'view-product', component: ProductEdit, meta: {title: 'View'}},
+            {path: 'edit/:id?', name: 'edit-product', component: ProductEdit, meta: {title: 'Edit'}},
+            {path: 'list/to-go-online', name: 'products-to-go', component: ProductListToGo, meta: {title: 'List'}},
+            {path: 'categories', name: 'edit-categories', component: ProductCategories, meta: {title: 'Categories'}},
           ],
         },
         {
           path: 'workshop',
           component: RouteWrap,
-          meta: { title: 'Workshop' },
+          meta: {title: 'Workshop'},
           children: [
-            { path: 'new', name: 'new-workshop', component: WorkshopNew, meta: { title: 'New' } },
-            { path: 'edit/:id', name: 'edit-workshop', component: WorkshopEdit, meta: { title: 'Edit' } },
-            { path: 'list', name: 'list-workshop', component: WorkshopList, meta: { title: 'List' } },
+            {path: 'new', name: 'new-workshop', component: WorkshopNew, meta: {title: 'New'}},
+            {path: 'edit/:id', name: 'edit-workshop', component: WorkshopEdit, meta: {title: 'Edit'}},
+            {path: 'list', name: 'list-workshop', component: WorkshopList, meta: {title: 'List'}},
           ],
         },
         {
           path: 'sales',
           component: RouteWrap,
-          meta: { title: 'Sales' },
+          meta: {title: 'Sales'},
           children: [
-            { path: '', name: 'sales-index', component: SalesIndex },
-            { path: 'new', name: 'new-sale', component: SalesNew, meta: { title: 'New' } },
-            { path: 'view/:id', name: 'view-sale', component: SalesView, meta: { title: 'View' } },
-            { path: '/admin/contacts/new', name: 'new-contact', component: ContactsNew, meta: { title: 'New Contact' } },
-            { path: '/admin/contacts/edit/:id', name: 'edit-contact', component: ContactsEdit, meta: { title: 'Edit Contact' } },
-            { path: '/admin/contacts/list', name: 'list-contacts', component: ContactsList, meta: { title: 'Contacts List' } },
+            {path: '', name: 'sales-index', component: SalesIndex},
+            {path: 'new', name: 'new-sale', component: SalesNew, meta: {title: 'New'}},
+            {path: 'view/:id', name: 'view-sale', component: SalesView, meta: {title: 'View'}},
+            {path: '/admin/contacts/new', name: 'new-contact', component: ContactsNew, meta: {title: 'New Contact'}},
+            {
+              path: '/admin/contacts/edit/:id',
+              name: 'edit-contact',
+              component: ContactsEdit,
+              meta: {title: 'Edit Contact'},
+            },
+            {
+              path: '/admin/contacts/list',
+              name: 'list-contacts',
+              component: ContactsList,
+              meta: {title: 'Contacts List'},
+            },
           ],
         },
         {
           path: 'purchases',
           component: RouteWrap,
-          meta: { title: 'Purchases' },
+          meta: {title: 'Purchases'},
           children: [
-            { path: '', name: 'purchase-index', component: PurchasesIndex },
-            { path: 'new', name: 'new-purchase', component: PurchasesNew, meta: { title: 'New' } },
-            { path: 'view/:id', name: 'view-purchase', component: PurchasesView, meta: { title: 'View' } },
+            {path: '', name: 'purchase-index', component: PurchasesIndex},
+            {path: 'new', name: 'new-purchase', component: PurchasesNew, meta: {title: 'New'}},
+            {path: 'view/:id', name: 'view-purchase', component: PurchasesView, meta: {title: 'View'}},
           ],
         },
         {
           path: 'site',
           component: RouteWrap,
-          meta: { title: 'Site Settings' },
+          meta: {title: 'Site Settings'},
           children: [
-            { path: '', name: 'site-index', component: SiteIndex },
-            { path: 'home', name: 'page-home', component: SiteHome, meta: { title: 'Home Page' } },
-            { path: 'contact', name: 'page-contact', component: SiteContact, meta: { title: 'Contact Page' } },
-            { path: 'general', name: 'page-general', component: SiteGeneral, meta: { title: 'General Settings' } },
-            { path: '/admin/page-builder/new', name: 'new-page', component: PageBuilderNew, meta: { title: 'New Page' } },
-            { path: '/admin/page-builder/edit/:id', name: 'edit-page', component: PageBuilderEdit, meta: { title: 'Edit Page' } },
-            { path: '/admin/page-builder/list', name: 'list-pages', component: PageBuilderList, meta: { title: 'Page List' } },
+            {path: '', name: 'site-index', component: SiteIndex},
+            {path: 'home', name: 'page-home', component: SiteHome, meta: {title: 'Home Page'}},
+            {path: 'contact', name: 'page-contact', component: SiteContact, meta: {title: 'Contact Page'}},
+            {path: 'general', name: 'page-general', component: SiteGeneral, meta: {title: 'General Settings'}},
+            {path: '/admin/page-builder/new', name: 'new-page', component: PageBuilderNew, meta: {title: 'New Page'}},
+            {
+              path: '/admin/page-builder/edit/:id',
+              name: 'edit-page',
+              component: PageBuilderEdit,
+              meta: {title: 'Edit Page'},
+            },
+            {
+              path: '/admin/page-builder/list',
+              name: 'list-pages',
+              component: PageBuilderList,
+              meta: {title: 'Page List'},
+            },
           ],
         },
         {
           path: 'users',
           component: RouteWrap,
-          meta: { title: 'Users' },
+          meta: {title: 'Users'},
           children: [
-            { path: '', name: 'user-index', component: UsersIndex },
-            { path: 'new', name: 'new-user', component: UsersNew, meta: { title: 'New' } },
-            { path: 'edit/:id', name: 'edit-user', component: UsersEdit, meta: { title: 'Edit' } },
+            {path: '', name: 'user-index', component: UsersIndex},
+            {path: 'new', name: 'new-user', component: UsersNew, meta: {title: 'New'}},
+            {path: 'edit/:id', name: 'edit-user', component: UsersEdit, meta: {title: 'Edit'}},
           ],
         },
       ],
     },
 
-    { path: '/403', name: 'error-403', component: Error403, meta: { title: '403 Forbidden' } },
-    { path: '/502', name: 'error-502', component: Error502, meta: { title: '502 Server Error' } },
+    {path: '/403', name: 'error-403', component: Error403, meta: {title: '403 Forbidden'}},
+    {path: '/502', name: 'error-502', component: Error502, meta: {title: '502 Server Error'}},
 
     // demo pages
-    { path: '/users', name: 'users', component: Users, meta: { auth: ['admin'] } },
-    { path: '/tests', name: 'tests', component: Tests },
-    { path: '/register', name: 'register', component: Register, meta: { auth: false } },
-    { path: '/account', name: 'account', component: Account, meta: { auth: true } },
+    {path: '/users', name: 'users', component: Users, meta: {auth: ['admin']}},
+    {path: '/tests', name: 'tests', component: Tests},
+    {path: '/register', name: 'register', component: Register, meta: {auth: false}},
+    {path: '/account', name: 'account', component: Account, meta: {auth: true}},
 
-    { path: '*', name: 'error-404', component: Error404, meta: { title: '404 Not Found' } },
+    {path: '*', name: 'error-404', component: Error404, meta: {title: '404 Not Found'}},
   ],
 });
 

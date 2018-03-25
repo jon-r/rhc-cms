@@ -1,4 +1,4 @@
 <template>
-<page-tile title="Edit Page">
-</page-tile>
+  <page-tile title="Edit Page">
+  </page-tile>
 </template>

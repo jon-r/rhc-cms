@@ -37,17 +37,16 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex';
+  import {mapGetters} from 'vuex';
 
 import NavBar from './NavBar.vue';
+
 export default {
   components: {
     NavBar,
   },
   computed: {
-    ...mapGetters(['isLoading'])
+    ...mapGetters(['isLoading']),
   },
   mounted() {
     // Set up $auth.ready with other arbitrary loaders (ex: language file).
@@ -71,5 +70,21 @@ export default {
 
 .margin-bottom {
   margin-bottom: 0.75rem;
+}
+
+.colored-tile {
+  @each $name, $pair in $colors {
+    // taken from bulma => message.sass
+    $color: nth($pair, 1);
+    $color-lightning: max((100% - lightness($color)) - 2%, 0%);
+    $color-luminance: colorLuminance($color);
+    $darken-percentage: $color-luminance * 70%;
+    $desaturate-percentage: $color-luminance * 30%;
+    &.is-#{$name} {
+      background-color: lighten($color, 30%);
+      color: desaturate(darken($color, $darken-percentage), $desaturate-percentage);
+      border: solid 1px $color;
+    }
+  }
 }
 </style>

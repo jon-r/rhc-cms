@@ -8,11 +8,11 @@ export default () => new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   // TODO: add loading, error, other global states
   state: {
-    itemsPerPage: 10,
+    itemsPerPage: 15,
     isLoading: false,
   },
   actions: {
-    toggleLoading({ commit }, isLoading) {
+    toggleLoading({commit}, isLoading) {
       commit(TOGGLE_LOADING, isLoading);
     },
   },

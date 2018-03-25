@@ -25,6 +25,6 @@ export default {
   components: {
     SideBar,
     BreadCrumbs,
-  }
-}
+  },
+};
 </script>

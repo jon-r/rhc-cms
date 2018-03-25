@@ -1,5 +1,4 @@
 <template>
-<page-tile title="New Contact">
-
-</page-tile>
+  <page-tile title="New Contact">
+  </page-tile>
 </template>
