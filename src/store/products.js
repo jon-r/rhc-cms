@@ -19,11 +19,14 @@ export default {
         });
     },
 
-    async getProduct({commit}, id) {
+    getProduct({commit}, id) {
       commit(TOGGLE_LOADING, true);
-      let {data} = await fetchFromAPI(`/cms/product/show/${id}`);
-      commit(GET_ITEM, data);
-      commit(TOGGLE_LOADING, false);
+
+      fetchFromAPI(`/cms/product/show/${id}`)
+        .then(({data}) => {
+          commit(GET_ITEM, data);
+          commit(TOGGLE_LOADING, false);
+        });
     },
   },
   mutations: {
@@ -50,7 +53,6 @@ export default {
   },
   getters: {
     productList: state => state.currentList.map(id => state.products[id]),
-    productListCount: state => state.currentList.length,
     product: state => id => state.products[id],
   },
 };

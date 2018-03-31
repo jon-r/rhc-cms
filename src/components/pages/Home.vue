@@ -26,8 +26,11 @@
             </r-link>
           </div>
           <div class="column">
-            <r-link to="products-index" class="button is-fullwidth is-dark">
+            <r-link to="products-index" class="button is-fullwidth is-dark margin-bottom">
               To Print  (!fix link)
+            </r-link>
+            <r-link to="edit-categories" class="button is-fullwidth is-dark">
+              Categories
             </r-link>
           </div>
         </div>
@@ -37,7 +40,7 @@
         <r-link to="products-index" class="button is-large is-fullwidth margin-bottom is-dark">
           Browse Workshop
         </r-link>
-        <r-link to="list-products" class="button is-medium is-fullwidth margin-bottom is-dark">
+        <r-link to="products-index" class="button is-medium is-fullwidth margin-bottom is-dark">
           Workshop To Do  (!fix link)
         </r-link>
 
@@ -85,9 +88,6 @@
           </li>
           <li>
             <router-link :to="{name: 'new-workshop'}">New Workshop</router-link>
-          </li>
-          <li>
-            <router-link :to="{name: 'list-products'}">Product Lists</router-link>
           </li>
         </ul>
         <br>

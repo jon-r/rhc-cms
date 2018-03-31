@@ -1,12 +1,13 @@
 import Vuex from 'vuex';
 
 import products from './products';
+import categories from './categories';
 
 export const TOGGLE_LOADING = 'GLOBAL/TOGGLE_LOADING';
 
 export default () => new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
-  // TODO: add loading, error, other global states
+  // TODO: error, other global states
   state: {
     itemsPerPage: 15,
     isLoading: false,
@@ -28,5 +29,6 @@ export default () => new Vuex.Store({
 
   modules: {
     products,
+    categories,
   },
 });

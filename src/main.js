@@ -3,6 +3,8 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import VueAuth from '@websanova/vue-auth';
+import VueFormly from 'vue-formly';
+import VueFormlyBuefy from 'vue-formly-buefy';
 import Vuex from 'vuex';
 import Buefy from 'buefy';
 
@@ -28,6 +30,9 @@ Vue.axios.defaults.baseURL = API_URL;
 
 Vue.use(VueRouter);
 Vue.router = router;
+
+Vue.use(VueFormly);
+Vue.use(VueFormlyBuefy);
 
 Vue.use(VueAuth, {
   auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
