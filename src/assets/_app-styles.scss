@@ -55,3 +55,8 @@ $colors: (
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+// disable border for vue-formly-buefy
+form fieldset {
+  border: none;
+}

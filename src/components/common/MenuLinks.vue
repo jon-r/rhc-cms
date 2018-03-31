@@ -21,19 +21,26 @@
       </div>
 
       <div class="card-content">
-        {{editableLinks[n].slug}}
+        <menu-link-edit :link="getEditableLink(n)"></menu-link-edit>
       </div>
     </b-collapse>
   </div>
 </template>
 <script>
+  import MenuLinkEdit from '../../../common/CategoryEdit.vue';
   export default {
     props: ['links'],
+    components: {
+      MenuLinkEdit,
+    },
     computed: {
-      editableLinks: {
-        get() {
-          return [...this.links];
-        },
+      clonedLinks() {
+        return [...this.links];
+      },
+    },
+    methods: {
+      getEditableLink(n) {
+        return this.clonedLinks[n];
       },
     },
   }

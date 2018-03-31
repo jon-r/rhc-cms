@@ -27,11 +27,6 @@ export default {
   },
   getters: {
     groups: state => state.groups,
-    groupedCategories: state => id => state.categories
-      .filter(category => category.group_id === id)
-      .map(category => ({
-        ...category,
-        name: category.cat_name,
-      })),
+    categories: state => state.categories,
   },
 };

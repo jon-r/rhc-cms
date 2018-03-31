@@ -6,7 +6,7 @@
 
     <b-tabs v-model="activeTab" position="is-centered" size="is-small">
       <b-tab-item label="Categories">
-        <sortable-menu :links="categories"></sortable-menu>
+        <category-list :categories="categories"></category-list>
       </b-tab-item>
 
       <b-tab-item label="Group Options">
@@ -17,11 +17,11 @@
   </b-collapse>
 </template>
 <script>
-  import SortableMenu from '../../../common/SortableMenu.vue';
+  import CategoryList from './CategoryList.vue';
 
   export default {
     components: {
-      SortableMenu,
+      CategoryList,
     },
     props: ['group'],
     data() {
@@ -31,7 +31,8 @@
     },
     computed: {
       categories() {
-        return this.$store.getters.groupedCategories(this.group.id);
+        return this.$store.getters.categories
+          .filter(category => category.group_id === this.group.id);
       },
     },
   }
