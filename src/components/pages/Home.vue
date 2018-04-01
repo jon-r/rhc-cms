@@ -27,7 +27,7 @@
           </div>
           <div class="column">
             <r-link to="products-index" class="button is-fullwidth is-dark margin-bottom">
-              To Print  (!fix link)
+              To Print
             </r-link>
             <r-link to="edit-categories" class="button is-fullwidth is-dark">
               Categories
@@ -38,10 +38,10 @@
       <color-tile title="Workshop" color="is-purple">
 
         <r-link to="products-index" class="button is-large is-fullwidth margin-bottom is-dark">
-          Browse Workshop
+          Workshop
         </r-link>
         <r-link to="products-index" class="button is-medium is-fullwidth margin-bottom is-dark">
-          Workshop To Do  (!fix link)
+          Workshop To Do
         </r-link>
 
         <b-field>
@@ -57,7 +57,7 @@
       <color-tile title="Website" color="is-green">
         <button class="button is-medium is-fullwidth margin-bottom is-dark">Clear Cache</button>
         <r-link to="page-home" class="button is-medium is-fullwidth margin-bottom is-dark">
-          Front Banner (fix link)
+          Front Banner
         </r-link>
         <r-link to="site-index" class="button is-medium is-fullwidth margin-bottom is-dark">
           Pages

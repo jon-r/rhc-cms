@@ -1,8 +1,24 @@
 <template>
-  <form @submit.prevent="storeChanges">
-    <formly-form :form="form" :model="model" :fields="fields"></formly-form>
-    <b-field horizontal>
-      <button class="button is-primary" type="submit">Save</button>
+  <form @submit.prevent="updateCategory">
+    <formly-form :form="form" :model="category" :fields="fields"></formly-form>
+    <b-field horizontal grouped :message="request.message" :type="request.type">
+      <p class="buttons">
+        <button
+            class="button is-success"
+            type="submit"
+            :class="{'is-loading': request.isLoading}"
+        >
+          <b-icon icon="check"></b-icon>
+          <span>Save</span>
+        </button>
+        <button
+            class="button is-danger is-outlined"
+            @click.prevent="deleteCategory"
+        >
+          <b-icon icon="times"></b-icon>
+          <span>Delete (todo)</span>
+        </button>
+      </p>
     </b-field>
   </form>
 </template>
@@ -16,7 +32,6 @@
     data() {
       return {
         form: {},
-        model: this.category,
         fields: [
           {
             key: 'cat_name',
@@ -88,6 +103,12 @@
             },
           },
         ],
+
+        request: {
+          isLoading: false,
+          message: '',
+          type: '',
+        },
       }
     },
     computed: {
@@ -97,13 +118,30 @@
     },
     methods: {
       isUnique(key, value) {
-        return !this.categories
-          .filter(cat => cat.id !== this.category.id)
-          .find(cat => cat[key] === value);
-      },
+        const exists = Object.keys(this.categories)
+          .filter(id => this.category.id.toString() !== id)
+          .find(id => this.categories[id][key] === value);
 
-      storeChanges(values) {
-        console.log(values);
+        return !exists
+      },
+      updateCategory() {
+        this.request = {
+          isLoading: true,
+          message: '',
+          type: '',
+        };
+
+        this.$store.dispatch('updateCategory', this.category)
+          .then(res => {
+            this.request = {
+              isLoading: false,
+              message: res.message,
+              type: 'is-success',
+            };
+          });
+      },
+      deleteCategory() {
+        alert('not done yet');
       },
     },
   }

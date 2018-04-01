@@ -13,7 +13,7 @@ export default {
     getList({commit}, listQuery) {
       commit(TOGGLE_LOADING, true);
       fetchFromAPI(`/cms/products/list/${listQuery}`)
-        .then(({data}) => {
+        .then(data => {
           commit(GET_LIST, data);
           commit(TOGGLE_LOADING, false);
         });
@@ -23,7 +23,7 @@ export default {
       commit(TOGGLE_LOADING, true);
 
       fetchFromAPI(`/cms/product/show/${id}`)
-        .then(({data}) => {
+        .then(data => {
           commit(GET_ITEM, data);
           commit(TOGGLE_LOADING, false);
         });

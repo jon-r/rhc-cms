@@ -8,12 +8,16 @@ export function fetchFromAPI(endpoint, options) {
     query = objToQueryString(options.query);
   }
 
-  return axios.get(endpoint + query);
+  let method = 'get';
+  if (options && options.method) {
+    method = options.method;
+  }
+
+  return axios[method](endpoint + query, options && options.body)
+    .then(res => res.data);
 }
 
 function objToQueryString(obj) {
-  return Object.keys(obj).reduce((string, key) => {
-    const value = encodeURIComponent(obj[key]);
-    return `${string}&${key}=${value}`;
-  }, '?');
+  return Object.keys(obj)
+    .reduce((string, key) => `${string}&${key}=${encodeURIComponent(obj[key])}`, '?');
 }

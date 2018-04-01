@@ -31,8 +31,7 @@
     },
     computed: {
       categories() {
-        return this.$store.getters.categories
-          .filter(category => category.group_id === this.group.id);
+        return this.$store.getters.groupedCategories(this.group.id)
       },
     },
   }
