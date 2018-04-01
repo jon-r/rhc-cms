@@ -2,7 +2,7 @@
   <div class="container">
   <div class="columns is-centered">
     <page-tile title="Login" class="is-medium column is-half">
-      <form v-on:submit.prevent="login()" >
+      <form @submit.prevent="login()">
         <h3 class="subtitle"><b>Test users:</b> (admin / secret)</h3>
 
         <b-field label="Name" horizontal>

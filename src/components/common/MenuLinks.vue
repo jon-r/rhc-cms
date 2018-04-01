@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-  import MenuLinkEdit from '../../../common/CategoryEdit.vue';
+  import MenuLinkEdit from './MenuLinkEdit.vue';
   export default {
     props: ['links'],
     components: {
