@@ -1,7 +1,9 @@
 import {fetchFromAPI} from '../helpers/remoteData';
+import {SORT_ORDER_ASC} from '../helpers/sorting';
 import {TOGGLE_LOADING} from '.';
 
 const GET_CATEGORIES_LIST = 'CATEGORIES/GET_LIST';
+const UPDATE_CATEGORIES = 'CATEGORIES/UPDATE';
 
 const UPDATE_CATEGORY = 'CATEGORY/UPDATE';
 
@@ -21,8 +23,28 @@ export default {
         });
     },
 
+    updateCategories({commit}, {categories, group}) {
+      return fetchFromAPI('/cms/categories/update-all', {
+        method: 'post',
+        body: {
+          categories,
+          group,
+        },
+      })
+        .then(res => {
+          commit(UPDATE_CATEGORIES, res.values);
+          return res;
+        })
+        .catch(err => {
+          // todo global error
+          console.log(err);
+
+          return err;
+        });
+    },
+
     updateCategory({commit}, category) {
-      return fetchFromAPI('/cms/categories/update', {method: 'post', body: category})
+      return fetchFromAPI('/cms/categories/update-all', {method: 'post', body: category})
         .then(res => {
           commit(UPDATE_CATEGORY, res.values);
 
@@ -51,6 +73,16 @@ export default {
       state.categories = newCategories;
       state.groups = newGroups;
     },
+    [UPDATE_CATEGORIES](state, {categories}) {
+      categories.forEach(cat => {
+        state.categories = {
+          ...state.categories,
+          [cat.id]: cat,
+        };
+      });
+
+
+    },
     [UPDATE_CATEGORY](state, {category}) {
       state.categories = {
         ...state.categories,
@@ -63,6 +95,7 @@ export default {
     categories: state => state.categories,
     groupedCategories: state => grpId => Object.keys(state.categories)
       .filter(id => state.categories[id].group_id === grpId)
-      .map(id => state.categories[id]),
+      .map(id => state.categories[id])
+      .sort(SORT_ORDER_ASC),
   },
 };

@@ -1,32 +1,7 @@
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
-
-// // Set your colors
-// $primary: #424a57;
-// $primary-invert: findColorInvert($primary);
-
-// https://material.io/guidelines/style/color.html#color-color-palette
-$md-blue-grey: #607D8B;
-$md-blue-grey-light: #B0BEC5;
-$md-blue-grey-dark: #263238;
-
-$md-red: #F44336; // RHC
-$md-red-light: #EF9A9A;
-$md-red-dark: #B71C1C;
-$md-blue: #2196F3; // sales
-$md-blue-light: #2196F3;
-$md-blue-dark: #0D47A1;
-$md-green: #4CAF50; // website
-$md-green-light: #A5D6A7;
-$md-green-dark: #1B5E20;
-$md-purple: #673AB7; // Workshop
-$md-purple-light: #B39DDB;
-$md-purple-dark: #B39DDB;
-$md-amber: #FFE082; // contacts
-$md-amber-light: #FFC107;
-$md-amber-dark: #FF6F00;
-
-$base-color-bg: #ECEFF1;
+// import color variables
+@import 'variables';
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -46,11 +21,6 @@ $colors: (
         "purple": ($md-purple, $white),
         "amber": ($md-amber, $black),
 );
-
-// Links
-// $link: $primary;
-// $link-invert: $primary-invert;
-// $link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
 @import "~bulma";
